@@ -224,7 +224,90 @@ alias justenigma=&quot;ssh -Y -X $jenig&quot;</pre>
 
 <p><a href='http://www.cdc.gov/vaccines/programs/vfc/awardees/vaccine-management/price-list/archive.html' title=''>http://www.cdc.gov/vaccines/programs/vfc/awardees/vaccine-management/price-list/archive.html</a></p>
 
-<p><a href='http://www.cdc.gov//vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html' title=''>http://www.cdc.gov//vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html</a></p></article></slide>
+<p><a href='http://www.cdc.gov//vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html' title=''>http://www.cdc.gov//vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html</a></p>
+
+</article></slide><slide class=''><hgroup><h2>XML Example</h2></hgroup><article  id="xml-example">
+
+<pre class = 'prettyprint lang-r'>library(XML)
+xmldat &lt;- &#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;export date=&quot;13-Jan-2014 14:08 -0600&quot; createdBy=&quot;John Muschelli&quot; role=&quot;Data Manager&quot;&gt;
+
+  &lt;dataset1&gt;
+    &lt;ID&gt;001&lt;/ID&gt;
+    &lt;age&gt;50&lt;/age&gt;
+    &lt;field3 class = &quot;character&quot;&gt;blah&lt;/field3&gt;
+    &lt;field4 /&gt;
+  &lt;/dataset1&gt;
+  &lt;dataset2&gt;
+    &lt;ID&gt;001&lt;/ID&gt;
+    &lt;visit&gt;1&lt;/visit&gt;
+    &lt;scale1&gt;20&lt;/scale1&gt;
+    &lt;scale2 /&gt;
+    &lt;scale3&gt;20&lt;/scale3&gt;
+  &lt;/dataset2&gt;
+  &lt;dataset1&gt;
+    &lt;ID&gt;002&lt;/ID&gt;
+    &lt;age&gt;40&lt;/age&gt;
+    &lt;field4 class = &quot;character&quot;/&gt;
+  &lt;/dataset1&gt;  
+&lt;/export&gt;&#39;</pre>
+
+</article></slide><slide class=''><hgroup><h2>XML Parse (same as htmlParse)</h2></hgroup><article  id="xml-parse-same-as-htmlparse">
+
+<p>Parse and get dataset1</p>
+
+<pre class = 'prettyprint lang-r'>doc = xmlParse(file = xmldat, asText = TRUE)
+xpathSApply(doc, &quot;//dataset1&quot;)</pre>
+
+<pre >## [[1]]
+## &lt;dataset1&gt;
+##   &lt;ID&gt;001&lt;/ID&gt;
+##   &lt;age&gt;50&lt;/age&gt;
+##   &lt;field3 class=&quot;character&quot;&gt;blah&lt;/field3&gt;
+##   &lt;field4/&gt;
+## &lt;/dataset1&gt; 
+## 
+## [[2]]
+## &lt;dataset1&gt;
+##   &lt;ID&gt;002&lt;/ID&gt;
+##   &lt;age&gt;40&lt;/age&gt;
+##   &lt;field4 class=&quot;character&quot;/&gt;
+## &lt;/dataset1&gt;</pre>
+
+</article></slide><slide class=''><hgroup><h2>XML to Data Frame</h2></hgroup><article  id="xml-to-data-frame">
+
+<p>Convert xml to <code>data.frame</code>:</p>
+
+<pre class = 'prettyprint lang-r'>xmlToDataFrame(doc)</pre>
+
+<pre >##    ID  age field3 field4 visit scale1 scale2 scale3
+## 1 001   50   blah         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;
+## 2 001 &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;     1     20            20
+## 3 002   40   &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;</pre>
+
+<p>but 2 datasets are in there!</p>
+
+</article></slide><slide class=''><hgroup><h2>XML to Data Frame for dataset 1</h2></hgroup><article  id="xml-to-data-frame-for-dataset-1">
+
+<p>xmlValue does not work really (collapses fields)</p>
+
+<pre class = 'prettyprint lang-r'>xpathSApply(doc, &quot;//dataset1&quot;, xmlValue)</pre>
+
+<pre >## [1] &quot;00150blah&quot; &quot;00240&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>xmlToDataFrame(doc, nodes = getNodeSet(doc, &quot;//dataset1&quot;))</pre>
+
+<pre >##    ID age field3 field4
+## 1 001  50   blah       
+## 2 002  40   &lt;NA&gt;</pre>
+
+</article></slide><slide class=''><hgroup><h2>XML to Data Frame</h2></hgroup><article  id="xml-to-data-frame-1">
+
+<p>Let&#39;s get the value of things that only have class &quot;character&quot;:</p>
+
+<pre class = 'prettyprint lang-r'>xpathSApply(doc, &quot;//dataset1//*[@class = &#39;character&#39;]&quot;, xmlValue)</pre>
+
+<pre >## [1] &quot;blah&quot; &quot;&quot;</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

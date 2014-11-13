@@ -140,3 +140,66 @@ Go onto JHPCE, then type `subl FILE`
 
 <http://www.cdc.gov//vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html>
 
+## XML Example
+
+```{r xml}
+library(XML)
+xmldat <- '<?xml version="1.0" encoding="UTF-8"?>
+<export date="13-Jan-2014 14:08 -0600" createdBy="John Muschelli" role="Data Manager">
+
+  <dataset1>
+    <ID>001</ID>
+    <age>50</age>
+    <field3 class = "character">blah</field3>
+    <field4 />
+  </dataset1>
+  <dataset2>
+    <ID>001</ID>
+    <visit>1</visit>
+    <scale1>20</scale1>
+    <scale2 />
+    <scale3>20</scale3>
+  </dataset2>
+  <dataset1>
+    <ID>002</ID>
+    <age>40</age>
+    <field4 class = "character"/>
+  </dataset1>  
+</export>'
+```
+
+## XML Parse (same as htmlParse)
+
+Parse and get dataset1
+```{r}
+doc = xmlParse(file = xmldat, asText = TRUE)
+xpathSApply(doc, "//dataset1")
+```
+
+## XML to Data Frame
+
+Convert xml to `data.frame`:
+```{r}
+xmlToDataFrame(doc)
+```
+but 2 datasets are in there!
+
+## XML to Data Frame for dataset 1
+
+xmlValue does not work really (collapses fields)
+```{r}
+xpathSApply(doc, "//dataset1", xmlValue)
+xmlToDataFrame(doc, nodes = getNodeSet(doc, "//dataset1"))
+```
+
+## XML to Data Frame
+
+Let's get the value of things that only have class "character":
+```{r}
+xpathSApply(doc, "//dataset1//*[@class = 'character']", xmlValue)
+```
+
+
+
+
+

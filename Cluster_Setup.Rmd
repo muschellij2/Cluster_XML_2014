@@ -5,6 +5,14 @@ date: "November 12, 2014"
 output: ioslides_presentation
 ---
 
+## Slides and code
+
+Slides are located at:
+<http://muschellij2.github.io/Cluster_XML_2014/Cluster_Setup.html>
+
+Code and Rmd are located at:
+<https://github.com/muschellij2/Cluster_XML_2014/tree/gh-pages>
+
 ## Step 1: SSH Keys
 
 - Ask Jiong for a Login

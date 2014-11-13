@@ -110,6 +110,8 @@ Go onto JHPCE, then type `subl FILE`
 
 ## CDC Example
 
+[Blog Post about XML example](http://hopstat.wordpress.com/2014/01/14/faster-xml-conversion-to-data-frames/)
+
 
 
 

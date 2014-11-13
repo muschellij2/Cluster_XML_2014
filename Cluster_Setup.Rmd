@@ -1,0 +1,19 @@
+---
+title: "My Cluster Setup and Some XML"
+author: "John Muschelli"
+date: "November 12, 2014"
+output: ioslides_presentation
+---
+
+## Step 1: SSH Keys
+
+- Ask Jiong for a Login
+Passwordless Logins
+- <http://www.biostat.jhsph.edu/bit/nopassword.html>
+- <http://www.linuxproblem.org/art_9.html>
+- How does it work?
+
+## Step 1: SSH Keys
+
+- Make key on your machine `ssh--keygen -t rsa`
+- DSA or RSA? See [Check out SO](http://security.stackexchange.com/questions/5096/rsa-vs-dsa-for-ssh-authentication-keys)

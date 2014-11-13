@@ -130,8 +130,10 @@
 
 <ul>
 <li>Typing Passwords is BORING and inefficient</li>
-<li>Check out Leo&#39;s post for <code>qr</code>: <a href='http://lcolladotor.github.io/2013/12/11/quick-cluster-login-to-interactive-session/' title=''>http://lcolladotor.github.io/2013/12/11/quick-cluster-login-to-interactive-session/</a> c In <code>.bash_profile</code> (defining environment variables and aliases):</li>
+<li>Check out Leo&#39;s post for <code>qr</code>: <a href='http://lcolladotor.github.io/2013/12/11/quick-cluster-login-to-interactive-session/' title=''>http://lcolladotor.github.io/2013/12/11/quick-cluster-login-to-interactive-session/</a></li>
 </ul>
+
+<p>In <code>.bash_profile</code> (defining environment variables and aliases):</p>
 
 <pre class = 'prettyprint lang-bash'>jhpce_num=&quot;02&quot;
 jenig=&quot;jmuschel@jhpce${jhpce_num}.jhsph.edu&quot;
@@ -159,9 +161,9 @@ alias justenigma=&quot;ssh -Y -X $jenig&quot;</pre>
 </article></slide><slide class=''><hgroup><h2>Text Editor</h2></hgroup><article  id="text-editor">
 
 <ul>
-<li>I recommend Sublime Text 2 (Cross-platform, but not free)</li>
-<li>Atom.io is good, similar to Sublime.</li>
-<li>Textmate is also good</li>
+<li>I recommend <a href='http://www.sublimetext.com/2' title=''>Sublime Text 2</a> (Cross-platform, but not free)</li>
+<li><a href='https://atom.io/' title=''>Atom</a> is good, similar to Sublime.</li>
+<li><a href='http://macromates.com/download' title=''>Textmate 2</a> is also good</li>
 <li>All can use <code>rmate</code> (ssh forwarding)</li>
 <li><a href='https://atom.io/packages/remote-atom' title=''>https://atom.io/packages/remote-atom</a></li>
 </ul>
@@ -178,12 +180,14 @@ alias justenigma=&quot;ssh -Y -X $jenig&quot;</pre>
 
 <p>Go onto JHPCE, then type <code>subl FILE</code></p>
 
+<p>Alternatively, setup the port in your <code>~/.ssh/config</code> file.</p>
+
 <p>(Demo)</p>
 
 </article></slide><slide class=''><hgroup><h2>Other options</h2></hgroup><article  id="other-options">
 
 <ul>
-<li>Use Git and use a lot of push/pulls to maintain cluster</li>
+<li>Use <a href='http://git-scm.com/' title=''>Git</a> and use a lot of push/pulls to maintain cluster</li>
 <li>I usually use git, with remote repo (GitHub), then <code>rsync</code> to cluster</li>
 <li>Make aliases to places syncing regularly</li>
 <li><code>syncprog</code> demo.</li>
@@ -192,9 +196,11 @@ alias justenigma=&quot;ssh -Y -X $jenig&quot;</pre>
 </article></slide><slide class=''><hgroup><h2>Other efficiencies</h2></hgroup><article  id="other-efficiencies">
 
 <ul>
-<li>Make aliases for commonly navigated paths</li>
+<li><p>Make aliases for commonly navigated paths. Example:</p>
+
+<pre class = 'prettyprint lang-bash'>alias ders=&quot;cd /dcs01/lieber/ajaffe/Brain/derRuns/&quot;</pre></li>
 <li>Make a <code>qcwd</code> alias</li>
-<li>Make an <code>Rbatch</code> alias</li>
+<li><p>Make an <code>Rbatch</code> alias</p></li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>XML package</h2></hgroup><article  id="xml-package">
@@ -224,9 +230,9 @@ alias justenigma=&quot;ssh -Y -X $jenig&quot;</pre>
 
 <p><a href='http://www.cdc.gov/vaccines/programs/vfc/awardees/vaccine-management/price-list/archive.html' title=''>http://www.cdc.gov/vaccines/programs/vfc/awardees/vaccine-management/price-list/archive.html</a></p>
 
-<p><a href='http://www.cdc.gov//vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html' title=''>http://www.cdc.gov//vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html</a></p>
+<p><a href='http://www.cdc.gov/vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html' title=''>http://www.cdc.gov/vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html</a></p>
 
-</article></slide><slide class=''><hgroup><h2>XML Example</h2></hgroup><article  id="xml-example">
+</article></slide><slide class=''><hgroup><h2>XML Example</h2></hgroup><article  id="xml-example" class="smaller">
 
 <pre class = 'prettyprint lang-r'>library(XML)
 xmldat &lt;- &#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -252,7 +258,7 @@ xmldat &lt;- &#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&g
   &lt;/dataset1&gt;  
 &lt;/export&gt;&#39;</pre>
 
-</article></slide><slide class=''><hgroup><h2>XML Parse (same as htmlParse)</h2></hgroup><article  id="xml-parse-same-as-htmlparse">
+</article></slide><slide class=''><hgroup><h2>XML Parse (same as htmlParse)</h2></hgroup><article  id="xml-parse-same-as-htmlparse" class="smaller">
 
 <p>Parse and get dataset1</p>
 

@@ -97,6 +97,13 @@ Go onto JHPCE, then type `subl FILE`
 - Make aliases to places syncing regularly
   - `syncprog` demo.
 
+## Other efficiencies
+
+- Make aliases for commonly navigated paths
+- Make a `qcwd` alias
+- Make an `Rbatch` alias
+
+
 
 ## XML package
 
@@ -104,11 +111,6 @@ Go onto JHPCE, then type `subl FILE`
 - Use for parsing XML and HTML tables
 - Use XPath - query language
 
-## Other efficiencies
-
-- Make aliases for commonly navigated paths
-- Make a `qcwd` alias
-- Make an `Rbatch` alias
 
 
 ## (My) Mostly used commands

@@ -8,7 +8,9 @@ output: ioslides_presentation
 ## Step 1: SSH Keys
 
 - Ask Jiong for a Login
-Passwordless Logins
+
+Passwordless Logins:
+
 - <http://www.biostat.jhsph.edu/bit/nopassword.html>
 - <http://www.linuxproblem.org/art_9.html>
 - How does it work?
@@ -31,19 +33,22 @@ Passwordless Logins
 
 ## Step 3: Login into node from one command
 
-- Typing Passwords is BORING, but inefficient
+- Typing Passwords is BORING and inefficient
 - Check out Leo's post for `qr`: <http://lcolladotor.github.io/2013/12/11/quick-cluster-login-to-interactive-session/>
+c
+In `.bash_profile` (defining environment variables and aliases):
 ```{r, engine='bash'}
 jhpce_num="02"
 jenig="jmuschel@jhpce${jhpce_num}.jhsph.edu"
 jdenig="jmuschel@jhpce03.jhsph.edu"
+alias justenigma="ssh -Y -X $jenig"
 ```
+
 
 ## My addition: `qrgig`
 
 Use `qrgig 5 6`:
 ```{r, engine='bash'}
-alias justenigma="ssh -Y -X $jenig"
 qrgig(){
     x="$1"
     y="$2"
@@ -64,7 +69,7 @@ qrgig(){
 - I recommend Sublime Text 2 (Cross-platform, but not free)
 - Atom.io is good, similar to Sublime.
 - Textmate is also good
-- All can use `rmate`
+- All can use `rmate` (ssh forwarding)
 - <https://atom.io/packages/remote-atom>
 
 
@@ -76,19 +81,21 @@ This link allows you to forward your code to a local machine:
 Then put this in  your `.bash_profile` on the cluster, changing `MYPORT` to a unique number:
 `alias subl="rmate -p MYPORT"`
 
-Then put this in your local `.bash_profile`
+Then put this in your local `.bash_profile`:
+
 `alias enigma="ssh -Y -X -R MYPORT:localhost:52698 ${jenig}"`
 
 Go onto JHPCE, then type `subl FILE`
+
 (Demo)
 
 
 ## Other options
 
 - Use Git and use a lot of push/pulls to maintain cluster
-- I usually use git, with remote repo (GitHub), then rsync to cluster
+- I usually use git, with remote repo (GitHub), then `rsync` to cluster
 - Make aliases to places syncing regularly
-  - syncprog demo.
+  - `syncprog` demo.
 
 
 ## XML package
@@ -97,9 +104,16 @@ Go onto JHPCE, then type `subl FILE`
 - Use for parsing XML and HTML tables
 - Use XPath - query language
 
+## Other efficiencies
+
+- Make aliases for commonly navigated paths
+- Make a `qcwd` alias
+- Make an `Rbatch` alias
+
 
 ## (My) Mostly used commands
 
+- `xmlParse`/`htmlParse`
 - `readHTMLTable`
 - `readHTMLList`
 - `xmlValue`
@@ -110,16 +124,9 @@ Go onto JHPCE, then type `subl FILE`
 
 ## CDC Example
 
-[Blog Post about XML example](http://hopstat.wordpress.com/2014/01/14/faster-xml-conversion-to-data-frames/)
+[Check out my Blog Post about XML example](http://hopstat.wordpress.com/2014/01/14/faster-xml-conversion-to-data-frames/)
 
+<http://www.cdc.gov/vaccines/programs/vfc/awardees/vaccine-management/price-list/archive.html>
 
-
-
-
-
-
-
-
-
-
+<http://www.cdc.gov//vaccines/programs/vfc/awardees/vaccine-management/price-list/2012/2012-02-01.html>
 

@@ -5,6 +5,7 @@ library(zoo)
 library(plyr)
 # setwd("~/Desktop")
 
+#### Parse the Master file - with all the links
 root.url = "http://www.cdc.gov/"
 main.url = file.path(root.url, 
 	"vaccines/programs/vfc/awardees/vaccine-management/price-list/archive.html")
@@ -21,6 +22,7 @@ table.num = 1
 get.tab = function(url, table.num = 1) {
 	
 	doc = htmlParse(url, isURL = TRUE)
+	### find all paragraphs
 	info = xpathSApply(doc, "//p", xmlValue)
 	info = grep("^Prices last reviewed/updated: ", info, value=TRUE)
 	info = gsub("Prices last reviewed/updated: ", "", info)

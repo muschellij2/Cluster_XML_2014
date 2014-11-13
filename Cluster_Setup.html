@@ -91,7 +91,12 @@
 <slide class=''><hgroup><h2>Step 1: SSH Keys</h2></hgroup><article  id="step-1-ssh-keys">
 
 <ul>
-<li>Ask Jiong for a Login Passwordless Logins</li>
+<li>Ask Jiong for a Login</li>
+</ul>
+
+<p>Passwordless Logins:</p>
+
+<ul>
 <li><a href='http://www.biostat.jhsph.edu/bit/nopassword.html' title=''>http://www.biostat.jhsph.edu/bit/nopassword.html</a></li>
 <li><a href='http://www.linuxproblem.org/art_9.html' title=''>http://www.linuxproblem.org/art_9.html</a></li>
 <li>How does it work?</li>
@@ -118,15 +123,18 @@
 </article></slide><slide class=''><hgroup><h2>Step 3: Login into node from one command</h2></hgroup><article  id="step-3-login-into-node-from-one-command">
 
 <ul>
-<li>Typing Passwords is BORING, but inefficient</li>
-<li>Check out Leo&#39;s post for <code>qr</code>: <a href='http://lcolladotor.github.io/2013/12/11/quick-cluster-login-to-interactive-session/' title=''>http://lcolladotor.github.io/2013/12/11/quick-cluster-login-to-interactive-session/</a></li>
+<li>Typing Passwords is BORING and inefficient</li>
+<li>Check out Leo&#39;s post for <code>qr</code>: <a href='http://lcolladotor.github.io/2013/12/11/quick-cluster-login-to-interactive-session/' title=''>http://lcolladotor.github.io/2013/12/11/quick-cluster-login-to-interactive-session/</a> c In <code>.bash_profile</code> (defining environment variables and aliases):</li>
 </ul>
 
 <pre class = 'prettyprint lang-bash'>jhpce_num=&quot;02&quot;
 jenig=&quot;jmuschel@jhpce${jhpce_num}.jhsph.edu&quot;
-jdenig=&quot;jmuschel@jhpce03.jhsph.edu&quot;</pre>
+jdenig=&quot;jmuschel@jhpce03.jhsph.edu&quot;
+alias justenigma=&quot;ssh -Y -X $jenig&quot;</pre>
 
 </article></slide><slide class=''><hgroup><h2>My addition: <code>qrgig</code></h2></hgroup><article  id="my-addition-qrgig">
+
+<p>Use <code>qrgig 5 6</code>:</p>
 
 <pre class = 'prettyprint lang-bash'>qrgig(){
     x=&quot;$1&quot;
@@ -140,7 +148,75 @@ jdenig=&quot;jmuschel@jhpce03.jhsph.edu&quot;</pre>
     cmd=&quot;source /etc/profile; echo \&quot;cd \$PWD\&quot; &gt; ~/.bash_pwd; history -w; qrsh $ell&quot;
     # echo &quot;$cmd&quot;
     justenigma -t $cmd
-}</pre></article></slide>
+}</pre>
+
+</article></slide><slide class=''><hgroup><h2>Text Editor</h2></hgroup><article  id="text-editor">
+
+<ul>
+<li>I recommend Sublime Text 2 (Cross-platform, but not free)</li>
+<li>Atom.io is good, similar to Sublime.</li>
+<li>Textmate is also good</li>
+<li>All can use <code>rmate</code> (ssh forwarding)</li>
+<li><a href='https://atom.io/packages/remote-atom' title=''>https://atom.io/packages/remote-atom</a></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Port Forwarding</h2></hgroup><article  id="port-forwarding">
+
+<p>This link allows you to forward your code to a local machine: <a href='http://erniemiller.org/2011/12/12/textmate-2-rmate-awesome/' title=''>http://erniemiller.org/2011/12/12/textmate-2-rmate-awesome/</a></p>
+
+<p>Then put this in your <code>.bash_profile</code> on the cluster, changing <code>MYPORT</code> to a unique number: <code>alias subl=&quot;rmate -p MYPORT&quot;</code></p>
+
+<p>Then put this in your local <code>.bash_profile</code>:</p>
+
+<p><code>alias enigma=&quot;ssh -Y -X -R MYPORT:localhost:52698 ${jenig}&quot;</code></p>
+
+<p>Go onto JHPCE, then type <code>subl FILE</code></p>
+
+<p>(Demo)</p>
+
+</article></slide><slide class=''><hgroup><h2>Other options</h2></hgroup><article  id="other-options">
+
+<ul>
+<li>Use Git and use a lot of push/pulls to maintain cluster</li>
+<li>I usually use git, with remote repo (GitHub), then <code>rsync</code> to cluster</li>
+<li>Make aliases to places syncing regularly</li>
+<li><code>syncprog</code> demo.</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>XML package</h2></hgroup><article  id="xml-package">
+
+<ul>
+<li>XML - Extensible Markup Language (XML) - like LaTeX/HTML, but usually for documents/data</li>
+<li>Use for parsing XML and HTML tables</li>
+<li>Use XPath - query language</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Other efficiencies</h2></hgroup><article  id="other-efficiencies">
+
+<ul>
+<li>Make aliases for commonly navigated paths</li>
+<li>Make a <code>qcwd</code> alias</li>
+<li>Make an <code>Rbatch</code> alias</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>(My) Mostly used commands</h2></hgroup><article  id="my-mostly-used-commands">
+
+<ul>
+<li><code>xmlParse</code>/<code>htmlParse</code></li>
+<li><code>readHTMLTable</code></li>
+<li><code>readHTMLList</code></li>
+<li><code>xmlValue</code></li>
+<li><code>xmlChildren</code></li>
+<li><code>xmlAttrs</code></li>
+<li><code>getNodeSet</code></li>
+<li><code>xpathApply</code>/<code>xpathSApply</code></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>CDC Example</h2></hgroup><article  id="cdc-example">
+
+<p><a href='http://hopstat.wordpress.com/2014/01/14/faster-xml-conversion-to-data-frames/' title=''>Check out the Blog Post about XML example</a></p>
+
+<p><a href='http://www.cdc.gov/vaccines/programs/vfc/awardees/vaccine-management/price-list/archive.html' title=''>http://www.cdc.gov/vaccines/programs/vfc/awardees/vaccine-management/price-list/archive.html</a></p></article></slide>
 
 
   <slide class="backdrop"></slide>
